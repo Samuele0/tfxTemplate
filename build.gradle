@@ -62,3 +62,8 @@ githubRelease {
     overwrite true // by default false; if set to true, will delete an existing release with the same tag and name
     apiEndpoint "https://api.github.com" // should only change for github enterprise users
 }
+distributions {
+    main {
+        baseName = "${javafx.platform.classifier}-noJVM.zip"
+    }
+}
