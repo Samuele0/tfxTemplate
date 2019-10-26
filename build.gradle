@@ -40,30 +40,32 @@ jlink {
     addExtraDependencies("javafx")
     imageZip.set(project.file("" + project.buildDir + "/image-zip/hello-image.zip"))
 }
-jlinkZip{
+jlinkZip {
     imageZip = project.file("${buildDir}/distributions/${javafx.platform.classifier}.zip")
 
 }
-String _token=
-githubRelease {
-    token System.getenv("githubtoken")// This is your personal access token with Repo permissions
-    // You get this from your user settings > developer settings
-    // If this value is not set, a login dialog will prompt you for your credentials.
-    // 2fa is not supported
-    owner "samuele0" // default is the last part of your group. Eg group: "com.github.breadmoirai" => owner: "breadmoirai"
-    repo "tfxTemplate" // by default this is set to your project name
-    tagName "CI" // by default this is set to "v${project.version}"
-    targetCommitish "master" // by default this is set to "master"
-    releaseName "CI" // Release title, by default this is the same as the tagName
-    body "" // by default this is empty
-    draft false // by default this is false
-    prerelease false // by default this is false
-    releaseAssets project.file("${buildDir}/distributions/").listFiles() // this points to which files you want to upload as assets with your release
-    overwrite true // by default false; if set to true, will delete an existing release with the same tag and name
-    apiEndpoint "https://api.github.com" // should only change for github enterprise users
-}
+if (System.getenv("githubtoken") != null)
+    githubRelease {
+        token System.getenv("githubtoken")// This is your personal access token with Repo permissions
+        // You get this from your user settings > developer settings
+        // If this value is not set, a login dialog will prompt you for your credentials.
+        // 2fa is not supported
+        owner "samuele0"
+        // default is the last part of your group. Eg group: "com.github.breadmoirai" => owner: "breadmoirai"
+        repo "tfxTemplate" // by default this is set to your project name
+        tagName "CI" // by default this is set to "v${project.version}"
+        targetCommitish "master" // by default this is set to "master"
+        releaseName "CI" // Release title, by default this is the same as the tagName
+        body "" // by default this is empty
+        draft false // by default this is false
+        prerelease false // by default this is false
+        releaseAssets project.file("${buildDir}/distributions/").listFiles()
+        // this points to which files you want to upload as assets with your release
+        overwrite true // by default false; if set to true, will delete an existing release with the same tag and name
+        apiEndpoint "https://api.github.com" // should only change for github enterprise users
+    }
 distributions {
     main {
-        baseName = "${javafx.platform.classifier}-noJVM.zip"
+        baseName = "${javafx.platform.classifier}-noJVM"
     }
 }
