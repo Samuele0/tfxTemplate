@@ -1,12 +1,15 @@
 language: java
+env:
+  global:
+    secure: CjU5n8r3f+z4z+k23FQ1H1/NZlivOobbyCWn/LQO7HxExqSrVKF7liTJ5Eg7q/EkkiToNeTTag4D0aRviXgKCmZlb+obvzmzMM7F1qWQCSoIsHTFJnYiydvKuTLRx6uCdSyoQ1fZVC9XuK2q0Lj5YiM0Uun01rXmX1a+3xAstkl6KroDtdrYck8hpToXU5YdfldDW/IAoH1rNDOin9E7s1ZVXK3IfME1rGt8/WBHZx9TG47n40A0M39pFq/jympYeOQMvXUJvOBqNMoRu3yceL1nbpxLwEZ+qsRB6OOzurgFEIL8A4jZk7JmnWfTjyA4dd1aZ/vRQWQYUau8/4fKLd1Bytiee6vvXyYXMZPZ/c90CNG930hKj9PyMaOpB8iY5wKnGapxES+z+0sw4UfqMd7lkSfbzE7xqQnSGu13xQ1bvx+i3+wMtCgpCLDpbOk8OiwrTLfxgz65DQ2ltsdx+Dh3TeaQmnl9TeJRjQ7NQM0hrDRWQ3oGGxkQp7Wj5VuXrTAID5d51dLzr4F5kn4Nqy5umEfeovtxMdhRt47bEMnS0WhPsHEJnLJKBXsx7FKB+P9oLGL6o94JFPfV+vADhtxMQDHJzNg9Uai3sNluPCbY+p52lrWaC/chONMvX6BuL2eWUyri//MKpGSdqINXa6xu6PUUddAQgwC5wQ/R87Y=
+
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 after_script:
-  - ./gradlew jlinkJar
-  - ./gradlew githubRelease
+- "./gradlew jlinkJar"
+- "./gradlew githubRelease"
