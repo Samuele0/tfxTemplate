@@ -11,5 +11,5 @@ cache:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
 after_script:
-- "./gradlew jlinkJar"
+- "./gradlew jlinkZip"
 - "./gradlew githubRelease"
